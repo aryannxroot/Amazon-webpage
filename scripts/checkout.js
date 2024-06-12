@@ -1,4 +1,4 @@
-import {cart, deleteFromCart} from "../data/cart.js";
+import {cart, deleteFromCart, updateDeliveryOption} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import {deliveryOptions} from "../data/deliveryoptions.js";
@@ -83,7 +83,9 @@ function deliveryOptionsHTML (product,cartItem) {
         const priceString = deliveryOption.priceCents === 0 ? 'FREE ' : `$${formatCurrency(deliveryOption.priceCents)} -`;
 
         html +=`
-                <div class="delivery-option">
+                <div class="delivery-option js-delivery-option"
+                    data-product-id="${product.id}"
+                    data-delivery-option-id="${deliveryOption.id}">
                     <input type="radio"
                     ${deliveryOption.id === cartItem.deliveryOptionId ? 'checked' : ''}
                     class="delivery-option-input"
@@ -118,3 +120,11 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((link) => {
         })
     })
 
+document.querySelectorAll('.js-delivery-option')
+    .forEach((element) => {
+        element.addEventListener('click',() => {
+            const productId = element.dataset.productId;
+            const deliveryOptionId = element.dataset.deliveryOptionId;
+            updateDeliveryOption(productId,deliveryOptionId);
+        })
+    })
