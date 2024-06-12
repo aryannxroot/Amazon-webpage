@@ -97,7 +97,6 @@ cart.forEach((cartItem) => {
 })
 
 updateCheckoutQuantity();
-
 document.querySelector('.js-order-summary')
     .innerHTML = orderSummaryHtml;
 
