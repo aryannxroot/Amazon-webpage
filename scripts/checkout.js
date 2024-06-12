@@ -2,6 +2,15 @@ import {cart, deleteFromCart} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+function updateCheckoutQuantity() {
+    let checkoutQuantity = 0;
+
+    cart.forEach(() => {
+        checkoutQuantity += 1;
+    });
+
+    document.querySelector('.js-checkout-quantity').innerHTML = `${checkoutQuantity} items`
+}
 
 let orderSummaryHtml = "";
 cart.forEach((cartItem) => {
@@ -87,6 +96,8 @@ cart.forEach((cartItem) => {
     `
 })
 
+updateCheckoutQuantity();
+
 document.querySelector('.js-order-summary')
     .innerHTML = orderSummaryHtml;
 
@@ -97,6 +108,7 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((link) => {
 
             const containerToRemove = document.querySelector(`.js-cart-item-container-${productId}`);
             containerToRemove.remove();
-
+            updateCheckoutQuantity();
         })
     })
+
