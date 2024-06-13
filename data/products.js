@@ -726,7 +726,9 @@ export const products = [
       "hoodies",
       "apparel",
       "mens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   }
 ].map((productDetails)=> {
   if(productDetails.type === 'clothing') {
