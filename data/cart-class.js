@@ -41,7 +41,7 @@ class Cart {
     
         //save cart to local Storage
         this.saveToStorage();
-        console.log(this.cartItems);
+        // console.log(this.cartItems);
     }
 
 
@@ -74,5 +74,5 @@ class Cart {
 
 }
 
-const cart = new Cart('cart-oop');
-console.log(cart);
+// const cart = new Cart('cart-oop');
+// console.log(cart);
